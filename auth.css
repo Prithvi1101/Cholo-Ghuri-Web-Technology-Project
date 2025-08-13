@@ -1,0 +1,139 @@
+
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden; 
+}
+
+
+.background {
+  background-image: url('./files/signbg.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-size: cover;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  filter: brightness(0.6);
+  z-index: -1;
+}
+
+
+.form-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 400px;
+  width: 90vw;
+  background: rgba(0, 0, 0, 0.65); 
+  border-radius: 14px;
+  padding: 40px 40px 30px 40px;
+  color: #eee;
+  box-shadow: 0 0 30px rgba(0,0,0,0.7);
+}
+
+
+.logo {
+  display: block;
+  margin: 0 auto 20px auto;
+  width: 90px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #fbbf24;
+}
+
+h2 {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  color: #fbbf24; 
+}
+
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 8px 0 10px 0;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1); 
+  color: #fff;
+  font-size: 1rem;
+  outline: none; 
+  transition: background 0.3s;
+}
+
+
+
+
+.error {
+  color: #f87171; /* soft red */
+  font-size: 0.8rem;
+  height: 16px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  margin: 12px 0 18px 0;
+  color: #ddd;
+}
+
+.options label {
+  cursor: pointer;
+}
+
+.options .forgot {
+  color: #fbbf24;
+  text-decoration: none;
+}
+
+.options .forgot:hover {
+  text-decoration: underline;
+}
+
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  background-color: #fbbf24;
+  border: none;
+  border-radius: 10px;
+  color: #222;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #f59e0b;
+}
+
+.btn:active {
+  background-color: #d97706;
+}
+.switch {
+  margin-top: 20px;
+  text-align: center;
+  color: #eee;
+}
+
+.switch a {
+  color: #fbbf24;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.switch a:hover {
+  text-decoration: underline;
+}

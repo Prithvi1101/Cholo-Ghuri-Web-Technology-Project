@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Up | Cholo Ghuri</title>
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+  <div class="background"></div>
+
+  <div class="form-container">
+    <img src="./files/logo.png" alt="Cholo Ghuri Logo" class="logo" />
+    <h2>Create your account</h2>
+
+ <form id="signupForm" enctype="multipart/form-data" novalidate>
+
+  <input type="text" id="name" name="name" placeholder="Full Name" required />
+  <small class="error" id="nameError"></small>
+
+  <input type="email" id="email" name="email" placeholder="Email" required />
+  <small class="error" id="emailError"></small>
+
+  <input type="text" id="phone" name="phone" placeholder="Phone Number" required />
+  <small class="error" id="phoneError"></small>
+
+  <input type="password" id="password" name="password" placeholder="Password" required />
+  <small class="error" id="passwordError"></small>
+
+  <!-- Profile Picture -->
+  <label for="picture" style="margin-top: 10px; color: #fff;">Select your profile picture</label>
+  <input type="file" id="picture" name="picture" accept="image/*" />
+  <small class="error" id="pictureError"></small>
+
+  <button type="submit" class="btn">Sign Up</button>
+</form>
+
+<p class="switch">Already have an account? <a href="signin.html">Sign in</a></p>
+
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>

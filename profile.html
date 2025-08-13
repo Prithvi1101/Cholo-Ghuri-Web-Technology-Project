@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Profile - Cholo Ghuri</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f2f6fc;
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      padding: 10px 30px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .navbar img.logo {
+      height: 40px;
+      margin-right: auto;
+    }
+    .navbar a {
+      text-decoration: none;
+      color: #333;
+      margin-left: 20px;
+      font-weight: 500;
+    }
+    .profile-header {
+      text-align: center;
+      padding: 2rem;
+      background-color: #26c6da;
+      color: white;
+      position: relative;
+    }
+    .logout-btn {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      background-color: #e53935;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid white;
+      margin-bottom: 10px;
+    }
+    h3 {
+      text-align: center;
+      margin-top: 2rem;
+      color: #333;
+    }
+    .booking-table {
+      width: 90%;
+      margin: 1.5rem auto;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .booking-table th, .booking-table td {
+      padding: 14px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .receipt-btn {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+    .pay-btn {
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <img src="./files/logo.png" class="logo" alt="Cholo Ghuri Logo">
+    <a href="index.html">Home</a>
+    <a href="./index.html#locations">Locations</a>
+    <a href="packages.html">Packages</a>
+    <a href="hotels.html">Hotels</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="profile-header">
+    <button class="logout-btn" onclick="logout()">Logout</button>
+    <img id="profilePic" class="profile-pic" src="" alt="Profile Picture">
+    <h2 id="username"></h2>
+    <p id="email"></p>
+    <p id="phone"></p>
+  </div>
+
+  <h3>Booking History</h3>
+  <table class="booking-table" id="bookingTable">
+    <thead>
+      <tr>
+        <th>Hotel</th>
+        <th>Package</th>
+        <th>Room</th>
+        <th>Check-in</th>
+        <th>Check-out</th>
+        <th>Status</th>
+        <th>Total</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+<script>
+async function fetchProfile() {
+  const res = await fetch('/api/profile');
+  if (!res.ok) return alert('Failed to load profile.');
+  const data = await res.json();
+
+  const user = data.user;
+  const bookings = data.bookings;
+
+  document.getElementById('profilePic').src = user.profile_picture;
+  document.getElementById('username').textContent = `${user.first_name} ${user.last_name}`;
+  document.getElementById('email').textContent = `Email: ${user.email}`;
+  document.getElementById('phone').textContent = `Phone: ${user.phone_number}`;
+
+  const tableBody = document.querySelector('#bookingTable tbody');
+  if (bookings.length === 0) {
+    tableBody.innerHTML = '<tr><td colspan="8">No bookings yet.</td></tr>';
+    return;
+  }
+
+  bookings.forEach(b => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${b.hotel_name}</td>
+      <td>${b.package_tier}</td>
+      <td>${b.room_type}</td>
+      <td>${b.check_in_date}</td>
+      <td>${b.check_out_date}</td>
+      <td>${b.status}</td>
+      <td>৳${b.total_cost}</td>
+      <td>
+        <div class="action-buttons">
+          <button class="receipt-btn" onclick="generateReceipt(
+            '${user.first_name} ${user.last_name}',
+            '${user.phone_number}',
+            '${b.hotel_name}',
+            '${b.package_tier}',
+            '${b.room_type}',
+            '${b.check_in_date}',
+            '${b.check_out_date}',
+            '${b.total_cost}',
+            '${b.status}'
+          )">🧾 Receipt</button>
+          <a href="payment.html?amount=${b.total_cost}">
+            <button class="pay-btn">💳 Pay</button>
+          </a>
+        </div>
+      </td>
+    `;
+    tableBody.appendChild(row);
+  });
+}
+
+function logout() {
+  fetch('/api/logout', {
+    method: 'POST'
+  }).then(() => {
+    window.location.href = '/signin.html';
+  }).catch(err => {
+    console.error('Logout failed:', err);
+  });
+}
+
+async function generateReceipt(name, phone, hotel, pkg, room, checkIn, checkOut, cost, status) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  const date = new Date().toLocaleString();
+
+  doc.setFontSize(18);
+  doc.text("Cholo Ghuri - Booking Receipt", 20, 20);
+
+  try {
+    const imgData = await loadImage('./files/logo.png');
+    doc.addImage(imgData, 'PNG', 150, 10, 35, 15); // adjusted logo size
+  } catch (e) {
+    console.warn("Logo not found or failed to load");
+  }
+
+  doc.setFontSize(10);
+  doc.text(`Date Issued: ${date}`, 20, 28);
+
+  const yStart = 45;
+  const lineHeight = 10;
+  const rows = [
+    ['Customer Name', name],
+    ['Phone Number', phone],
+    ['Hotel Name', hotel],
+    ['Package', pkg],
+    ['Room Type', room],
+    ['Check-in Date', checkIn],
+    ['Check-out Date', checkOut],
+    ['Booking Status', status],
+    ['Total Cost', `৳${parseFloat(cost).toFixed(2)}`]
+  ];
+
+  doc.setFontSize(12);
+  rows.forEach(([label, value], i) => {
+    doc.setFont(undefined, 'bold');
+    doc.text(`${label}:`, 20, yStart + i * lineHeight);
+    doc.setFont(undefined, 'normal');
+    doc.text(`${value}`, 75, yStart + i * lineHeight);
+  });
+
+  doc.setTextColor(0, 128, 0);
+  doc.text("Thank you for booking with Cholo Ghuri!", 20, yStart + rows.length * lineHeight + 10);
+
+  doc.save(`Booking_Receipt_${hotel}_${Date.now()}.pdf`);
+}
+
+function loadImage(url) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      resolve(canvas.toDataURL('image/png'));
+    };
+    img.onerror = reject;
+    img.src = url;
+  });
+}
+
+fetchProfile();
+</script>
+</body>
+</html>

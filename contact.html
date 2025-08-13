@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Cholo Ghuri</title>
+    <link rel="icon" href="./files/logo.png">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    }
+
+    .navbar {
+        background-color: #3779be00;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar a {
+        color: #f1f1f1;
+        text-decoration: none;
+        padding: 12px;
+        font-size: 18px;
+    }
+
+    .navbar a:hover {
+        color: #033d30;
+    }
+
+    .contact {
+        padding: 40px;
+        text-align: center;
+    }
+
+    .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-form h1 {
+        margin-bottom: 20px;
+        color: #0d1b2a;
+    }
+
+    .contact-form p {
+        margin-bottom: 20px;
+        color: #333;
+        font-size: 16px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #cfd8dc;
+        border-radius: 8px;
+        font-size: 16px;
+        box-sizing: border-box;
+        background-color: #f5f7fa;
+        color: #1a1a1a;
+    }
+
+    .contact-form textarea {
+        height: 150px;
+    }
+
+    .submit-btn {
+        background-color: #00bcd4;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+        background-color: #0097a7;
+        color: black;
+    }
+
+    .footer {
+        background-color: #0d1b2a;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .social a {
+        color: #000000;
+        font-size: 20px;
+        margin: 0 10px;
+    }
+
+    .social a:hover {
+        color: #64ffda;
+    }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <img src="./files/logo.png" class="logo" alt="Logo" title="Cholo Ghuri!">
+        <ul class="navbar">
+            <li>
+                <a href="./index.html">Home</a>
+                <a href="./index.html#locations">Locations</a>
+                <a href="./index.html#package">Packages</a>
+                <a href="./about.html">About Us</a>
+                <a href="./contact.html">Contact Us</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="contact">
+        <div class="contact-form">
+            <h1>Contact <span>Us</span></h1>
+            <p>We are always out there to help you! Fill out the form below and get a reply within 2 business days.</p>
+            <form id="contactForm">
+                <input type="text" id="myname" name="myname" placeholder="Your Name" required>
+                <input type="email" id="email" name="email" placeholder="Your E-mail" required>
+                <input type="text" id="subject" name="subject" placeholder="What brings you here?" required>
+                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                <input type="submit" value="Submit" class="submit-btn">
+            </form>
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="footer-content">
+            <div class="footlinks">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="./register.html">Register</a></li>
+                    <li><a href="./about.html">About Us</a></li>
+                    <li><a href="./contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footlinks">
+                <h4>Connect</h4>
+                <div class="social">
+                    <a href="https://www.facebook.com" target="_blank"><i class='bx bxl-facebook'></i></a>
+                    <a href="https://www.instagram.com" target="_blank"><i class='bx bxl-instagram'></i></a>
+                    <a href="https://www.twitter.com" target="_blank"><i class='bx bxl-twitter'></i></a>
+                    <a href="https://www.linkedin.com" target="_blank"><i class='bx bxl-linkedin'></i></a>
+                    <a href="https://www.youtube.com" target="_blank"><i class='bx bxl-youtube'></i></a>
+                    <a href="https://www.github.com" target="_blank"><i class='bx bxl-github'></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="end">
+            <p>Copyright © 2025 Cholo Ghuri! All Rights Reserved.<br>Website developed by: Prithvi and Zawad</p>
+        </div>
+    </section>
+
+    <script>
+        // JS for handling form submission and sending the data
+        document.getElementById('contactForm').addEventListener('submit', async function (e) {
+            e.preventDefault(); // Prevent default form submission
+
+            // Get the form data
+            const myname = document.getElementById('myname').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    myname,
+                    email,
+                    subject,
+                    message
+                })
+            });
+
+            if (response.ok) {
+                alert('Your message has been sent!');
+                // Optionally clear the form
+                document.getElementById('contactForm').reset();
+            } else {
+                alert('Error sending message');
+            }
+        });
+    </script>
+
+</body>
+</html>

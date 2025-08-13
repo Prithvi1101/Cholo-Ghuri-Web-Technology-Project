@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hotels - Cholo Ghuri</title>
+ <link rel="stylesheet" href="hotels.css">  
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="home-body">
+
+  <nav>
+    <img src="files/logo.png" class="logo" alt="Logo" title="Cholo Ghuri">
+    <ul class="navbar">
+      <li>
+        <a href="index.html">Home</a>
+        <a href="./index.html#locations">Locations</a>
+                <a href="./index.html#package">Packages</a>
+        <a href="hotels.html">Hotels</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section class="page-title-section" style="background: linear-gradient(to right, #0288d1, #26c6da); color: white; padding: 2rem 0; text-align: center;">
+  <h1 class="page-title" style="font-size: 2.5rem; margin: 0;">Find Your Perfect Stay</h1>
+</section>
+
+  <main class="hotel-container">
+    
+    <aside class="filters">
+      <h2>Filter Hotels</h2>
+
+      <label>Location:
+        <select id="locationFilter">
+          <option value="">All</option>
+          <option value="Cox's Bazar">Cox's Bazar</option>
+          <option value="Sajek">Sajek</option>
+          <option value="Sylhet">Sylhet</option>
+          <option value="Bandarban">Bandarban</option>
+          <option value="Sundarbans">Sundarbans</option>
+          <option value="Tanguar Haor">Tanguar Haor</option>
+          <option value="Saint Martin">Saint Martin</option>
+        </select>
+      </label>
+
+      <label>Star Rating:
+        <select id="starFilter">
+          <option value="">All</option>
+          <option value="5">★★★★★</option>
+          <option value="4">★★★★</option>
+          <option value="3">★★★</option>
+          <option value="2">★★</option>
+          <option value="1">★</option>
+        </select>
+      </label>
+
+      <label>Budget:
+        <input type="number" id="minBudget" placeholder="Min (৳)">
+        <input type="number" id="maxBudget" placeholder="Max (৳)">
+      </label>
+
+      <label>People:
+        <input type="number" id="peopleCount" min="1" max="10" value="2">
+      </label>
+
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="breakfast"> Breakfast Included</label>
+        <label><input type="checkbox" id="pool"> Swimming Pool</label>
+        <label><input type="checkbox" id="gym"> Gym Available</label>
+        <label><input type="checkbox" id="inclusive"> Inclusive Package</label>
+        <label><input type="checkbox" id="exclusive"> Exclusive Package</label>
+        <label><input type="checkbox" id="tourGuide"> Comes with Tour Guide</label>
+      </div>
+
+      <label>Package Type:
+        <select id="packageTypeFilter">
+          <option value="">All</option>
+          <option value="Bronze">Bronze</option>
+          <option value="Silver">Silver</option>
+          <option value="Gold">Gold</option>
+          <option value="Platinum">Platinum</option>
+        </select>
+      </label>
+
+      <button id="filterBtn">Apply Filters</button>
+    </aside>
+
+    
+    <section class="hotel-list" id="hotelList">
+      
+    </section>
+  </main>
+
+  <script src="hotels.js"></script>
+</body>
+</html>

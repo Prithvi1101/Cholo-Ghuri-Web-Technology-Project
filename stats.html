@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Statistics</title>
+  <link rel="icon" href="./files/logo.png">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .stats-container {
+      text-align: center;
+      padding: 20px;
+    }
+    .stats-box {
+      margin: 20px;
+      padding: 20px;
+      background: #26c6da;
+      border-radius: 8px;
+      color: white;
+    }
+    .navbar {
+      background-color: #26c6da;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .logo {
+      width: 150px;
+    }
+    .charts-container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 30px;
+    }
+    .chart-box {
+      width: 45%;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <img src="./files/logo.png" class="logo" alt="Logo">
+      <ul>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./index.html#locations">Locations</a></li>
+        <li><a href="./index.html#package">Packages</a></li>
+        <li><a href="./about.html">About Us</a></li>
+        <li><a href="./contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="stats-container">
+    <h1>Website Statistics</h1>
+
+    <!-- Displaying Stats -->
+    <div class="stats-box">
+      <h3>Total Users:</h3>
+      <p id="totalUsers">Loading...</p>
+    </div>
+    <div class="stats-box">
+      <h3>Total Hotels:</h3>
+      <p id="totalHotels">Loading...</p>
+    </div>
+    <div class="stats-box">
+      <h3>Most Popular Hotel (based on bookings):</h3>
+      <p id="mostPopularHotel">Loading...</p>
+    </div>
+
+    <div class="charts-container">
+      <div class="chart-box">
+        <h3>Popular Hotels</h3>
+        <canvas id="popularHotelsChart"></canvas>
+      </div>
+      <div class="chart-box">
+        <h3>Popular Locations</h3>
+        <canvas id="popularLocationsChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Fetch statistics data from the server
+    async function fetchStats() {
+      const res = await fetch('/api/stats');
+      if (!res.ok) {
+        alert('Error fetching stats');
+        return;
+      }
+      const stats = await res.json();
+      
+      // Update the stats on the page
+      document.getElementById('totalUsers').innerText = stats.totalUsers || 'No data';
+      document.getElementById('totalHotels').innerText = stats.totalHotels || 'No data';
+      document.getElementById('mostPopularHotel').innerText = stats.mostPopularHotel || 'No data';
+      
+      // Populate charts
+      populatePopularHotelsChart(stats.popularHotels);
+      populatePopularLocationsChart(stats.popularLocations);
+    }
+
+    // Populate Popular Hotels Chart
+    function populatePopularHotelsChart(data) {
+      const ctx = document.getElementById('popularHotelsChart').getContext('2d');
+      const chartData = {
+        labels: data.map(item => item.name),
+        datasets: [{
+          label: 'Bookings',
+          data: data.map(item => item.bookings),
+          backgroundColor: 'rgba(54, 162, 235, 0.6)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      };
+      new Chart(ctx, {
+        type: 'bar',
+        data: chartData
+      });
+    }
+
+    // Populate Popular Locations Chart
+    function populatePopularLocationsChart(data) {
+      const ctx = document.getElementById('popularLocationsChart').getContext('2d');
+      const chartData = {
+        labels: data.map(item => item.name),
+        datasets: [{
+          label: 'Bookings',
+          data: data.map(item => item.bookings),
+          backgroundColor: 'rgba(255, 159, 64, 0.6)',
+          borderColor: 'rgba(255, 159, 64, 1)',
+          borderWidth: 1
+        }]
+      };
+      new Chart(ctx, {
+        type: 'bar',
+        data: chartData
+      });
+    }
+
+
+    fetchStats();
+  </script>
+
+</body>
+</html>

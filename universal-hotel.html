@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hotel Tour</title>
+  <link rel="stylesheet" href="universal.css" />
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* Hero Section */
+    .hotel-hero {
+      position: relative;
+      height: 60vh;
+      background: url('files/default-hotel.jpg') center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      padding: 20px;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    .hero-content p {
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      padding: 12px 25px;
+      background-color: #26c6da;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #00bcd4;
+    }
+
+    /* Virtual Tour Section */
+    .virtual-tour {
+      background-color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .virtual-tour h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .tour-container iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+    }
+
+    /* Hotel Details Section */
+    .hotel-details {
+      background-color: #fff;
+      padding: 40px 20px;
+    }
+
+    .description,
+    .amenities,
+    .gallery {
+      margin-bottom: 40px;
+    }
+
+    .description h2,
+    .amenities h2,
+    .gallery h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #333;
+    }
+
+    .description p {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .amenities ul {
+      list-style-type: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      justify-items: center;
+    }
+
+    .amenities li {
+      font-size: 1.125rem;
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .amenities li svg {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Booking Section */
+    .booking {
+      background-color: #26c6da;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .booking h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .booking p {
+      font-size: 1.25rem;
+      margin-bottom: 25px;
+    }
+
+    .btn-secondary {
+      padding: 12px 25px;
+      background-color: #ffffff;
+      color: #26c6da;
+      font-weight: 600;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background-color: #e0f7fa;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+      }
+
+      .tour-container iframe {
+        height: 400px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .amenities li {
+        font-size: 1rem;
+      }
+
+      .gallery-grid img {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hotel-hero" style="background: url('files/default-hotel.jpg') center/cover no-repeat;">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Explore Our Luxury Hotel</h1>
+      <p>Experience the best in comfort and elegance</p>
+      <a href="#booking" class="btn-primary">Check Availability</a>
+    </div>
+  </section>
+
+  <!-- Virtual Tour Section -->
+  <section class="virtual-tour">
+    <h2>360° Virtual Tour</h2>
+    <div class="tour-container">
+      <iframe src="https://www.p4panorama.com/panos/edassery-island-inn-kochi-360-virtual-tour//" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <main class="hotel-details">
+    <!-- Hotel Description Section -->
+    <section class="description">
+      <h2>About the Hotel</h2>
+      <p>Welcome to a serene haven offering a perfect blend of comfort, luxury, and nature. Our hotel is designed to meet your every need and exceed expectations, offering a variety of facilities to make your stay unforgettable.</p>
+    </section>
+
+    <!-- Amenities & Services Section -->
+    <section class="amenities">
+      <h2>Amenities & Services</h2>
+      <ul>
+        <li>🍽️ Gourmet Restaurant & 24/7 Room Service</li>
+        <li>🏊 Infinity Pool with Stunning Views</li>
+        <li>💆 Spa & Wellness Center</li>
+        <li>🚴 Adventure Tours</li>
+        <li>📶 High-Speed Wi-Fi Throughout</li>
+        <li>🚌 Complimentary Airport Shuttle</li>
+      </ul>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <img src="./files/hotel-1.jpg" alt="Hotel Image 1">
+        <img src="./files/hotel-2.jpg" alt="Hotel Image 2">
+        <img src="./files/hotel-3.jpg" alt="Hotel Image 3">
+        <img src="./files/hotel-4.jpg" alt="Hotel Image 4">
+      </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="booking">
+      <h2>Book Your Stay</h2>
+      <p>Starting from ৳8,391 per night</p>
+      <a href="hotels.html" class="btn-secondary">Reserve Now</a>
+    </section>
+  </main>
+
+</body>
+</html>

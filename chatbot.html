@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatBot</title>
+  <link rel="stylesheet" href="chatbot.css" />
+</head>
+<body>
+      <button class="back-btn" id="back-btn">🔙 Back</button>
+  <div id="chatbot-container">
+
+    
+    <div id="chatbot-header">
+      <span>Hello, this is the cholo ghuri chatbot!</span>
+      <button id="close-btn">&times;</button>
+    </div>
+    <div id="chatbot-body">
+      <div id="chatbot-messages"></div>
+    </div>
+    <div id="chatbot-input-container">
+      <input type="text" id="chatbot-input" placeholder="Type a message" />
+      <!-- Button to trigger file upload -->
+      <label for="file-input" id="file-btn">📎 Attach File</label>
+      <input type="file" id="file-input" accept=".pdf,.doc,.docx" />
+    </div>
+    <button id="send-btn">Send</button>
+  </div>
+  <script src="chatbot.js"></script>
+</body>
+</html>

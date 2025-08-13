@@ -1,0 +1,219 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Book Hotel - Cholo Ghuri</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+    <style>
+        body {
+        font-family: 'Inter', sans-serif;
+        background: url('files/bookingbg.jpg') no-repeat center center fixed;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        }
+
+        .booking-container {
+        background: rgba(255, 255, 255, 0.95);
+        max-width: 750px;
+        margin: 40px auto;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+        color: #1e2e4f;
+        margin-bottom: 10px;
+        }
+
+        p {
+        margin: 5px 0 15px;
+        color: #333;
+        }
+
+        label {
+        display: block;
+        font-weight: 600;
+        margin-top: 12px;
+        color: #1e2e4f;
+        }
+
+        input, select {
+        width: 100%;
+        padding: 8px 10px;
+        margin-top: 4px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 14px;
+        }
+
+        #totalCost {
+        font-weight: bold;
+        font-size: 18px;
+        color: #0b6e4f;
+        }
+
+        button {
+        margin-top: 20px;
+        background-color: #0b6e4f;
+        color: white;
+        padding: 10px 16px;
+        font-size: 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        }
+
+        button:hover {
+        background-color: #095c3d;
+        }
+
+        .tags {
+        margin-top: 10px;
+        }
+
+        .tag {
+        display: inline-block;
+        background-color: #eef2f7;
+        color: #1e2e4f;
+        padding: 3px 10px;
+        border-radius: 12px;
+        margin: 2px;
+        font-size: 12px;
+        }
+    </style>
+    </head>
+    <body>
+    <div class="booking-container">
+        <h1>Booking at <span id="hotelName"></span></h1>
+        <p><strong>Location:</strong> <span id="hotelLocation"></span></p>
+        <p><strong>Description:</strong> <span id="hotelDescription"></span></p>
+
+        <form id="bookingForm">
+        <label for="checkInDate">Check-in Date:</label>
+        <input type="date" id="checkInDate" required>
+
+        <label for="checkOutDate">Check-out Date:</label>
+        <input type="date" id="checkOutDate" required>
+
+        <label for="adults">Number of Adults:</label>
+        <input type="number" id="adults" required min="1" value="1">
+
+        <label for="packageSelect">Choose Package:</label>
+        <select id="packageSelect" required></select>
+
+        <label for="roomType">Room Type:</label>
+        <select id="roomType" required>
+            <option value="Single">Single</option>
+            <option value="Double">Double</option>
+            <option value="Queen">Queen</option>
+            <option value="King">King</option>
+            <option value="Suite">Suite</option>
+        </select>
+
+        <p><strong>Total Cost:</strong> ৳<span id="totalCost">0</span></p>
+
+        <button type="submit">Confirm Booking</button>
+        </form>
+    </div>
+
+    <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const hotelId = urlParams.get('hotelId');
+    let packageMap = {};
+
+    // Fetch hotel info + packages
+    fetch(`/api/hotels/${hotelId}`)
+    .then(res => res.json())
+    .then(data => {
+        const hotel = data.hotel;
+        const packages = data.packages;
+
+        document.getElementById('hotelName').textContent = hotel.name;
+        document.getElementById('hotelLocation').textContent = hotel.location || '—';
+        document.getElementById('hotelDescription').textContent = hotel.description || '—';
+
+        const packageSelect = document.getElementById('packageSelect');
+        packages.forEach(pkg => {
+        const option = document.createElement('option');
+        option.value = pkg.package_id;
+        option.textContent = `${pkg.tier} - ৳${pkg.price_per_night}/night (${pkg.duration_days} days)`;
+        packageMap[pkg.package_id] = pkg;
+        packageSelect.appendChild(option);
+        });
+
+        updateTotalCost();
+    });
+
+    // Cost multiplier by room type
+    function getRoomTypeMultiplier(roomType) {
+    switch (roomType) {
+        case 'Single': return 1.0;
+        case 'Double': return 1.2;
+        case 'Queen':  return 1.4;
+        case 'King':   return 1.6;
+        case 'Suite':  return 2.0;
+        default:       return 1.0;
+    }
+    }
+
+    // Update cost live
+    function updateTotalCost() {
+    const checkInDate = new Date(document.getElementById('checkInDate').value);
+    const checkOutDate = new Date(document.getElementById('checkOutDate').value);
+    const adults = parseInt(document.getElementById('adults').value) || 1;
+    const packageId = parseInt(document.getElementById('packageSelect').value);
+    const roomType = document.getElementById('roomType').value;
+    const pkg = packageMap[packageId];
+
+    if (checkInDate && checkOutDate && pkg && roomType) {
+        const nights = (checkOutDate - checkInDate) / (1000 * 3600 * 24);
+        const multiplier = getRoomTypeMultiplier(roomType);
+        const total = Math.max(1, nights) * pkg.price_per_night * multiplier * adults;
+        document.getElementById('totalCost').textContent = total.toFixed(2);
+    }
+    }
+
+    ['checkInDate', 'checkOutDate', 'adults', 'packageSelect', 'roomType'].forEach(id => {
+    document.getElementById(id).addEventListener('input', updateTotalCost);
+    });
+
+    // Booking submission
+    document.getElementById("bookingForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const checkInDate = document.getElementById('checkInDate').value;
+    const checkOutDate = document.getElementById('checkOutDate').value;
+    const adults = parseInt(document.getElementById('adults').value);
+    const packageId = parseInt(document.getElementById('packageSelect').value);
+    const roomType = document.getElementById('roomType').value;
+    const totalCost = parseFloat(document.getElementById('totalCost').textContent);
+
+    const response = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+        hotel_id: parseInt(hotelId),
+        package_id: packageId,
+        check_in_date: checkInDate,
+        check_out_date: checkOutDate,
+        adults,
+        room_type: roomType,
+        total_cost: totalCost
+        })
+    });
+
+    if (response.ok) {
+        const result = await response.json();
+        alert('Booking confirmed!');
+        window.location.href = '/profile.html';
+    } else {
+        alert('Booking failed');
+    }
+    });
+    </script>
+    </body>
+    </html>

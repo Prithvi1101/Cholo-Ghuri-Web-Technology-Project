@@ -1,0 +1,440 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cholo Ghuri</title>
+        <link rel="icon" href="./files/logo.png">
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet"
+        href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    </head>
+    <body class="home-body">
+
+    <!-- Background Video & Header -->
+
+        <div class="banner">
+            <video src="./files/bgvid.mp4" type="video/mp4" autoplay muted loop></video>
+        
+        <!-- Header -->
+
+        <div class="content" id="home"> 
+            <nav>
+    <img src="./files/logo.png" class="logo" alt="Logo" title="Cholo Ghuri">
+    
+    <ul class="navbar" style="flex-grow: 1;">
+    <li>
+        <a href="#home">Home</a>
+        <a href="#locations">Locations</a>
+        <a href="./packages.html">Packages</a>
+        <a href="./hotels.html">Hotels</a>
+        <a href="./chatbot.html">Chatbot</a>
+        <a href="./about.html">About Us</a>
+        <a href="./contact.html">Contact Us</a>
+    </li>
+    </ul>
+
+    <!-- AUTH CONTROLS (fixed layout) -->
+    <div class="auth-controls" style="display: flex; align-items: center; position: relative; margin-right: 40px;">
+    <span id="welcome" style="color: white; margin-right: 10px;"></span>
+    <img
+        id="profilePic"
+        src="./files/default-user.png"
+        alt="Profile"
+        style="width: 32px; height: 32px; border-radius: 50%; cursor: pointer;"
+    />
+    <div
+        id="userDropdown"
+        style="
+        display: none;
+        position: absolute;
+        top: 45px;
+        right: 0;
+        background: white;
+        border-radius: 6px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        z-index: 999;
+        "
+    >
+        <ul style="list-style: none; margin: 0; padding: 10px;">
+        <li><a href="profile.html" style=" color: rgb(7, 6, 6)">Profile</a></li>
+        <li>
+            <button
+            id="logoutBtn"
+            style="background: none; border: none; color: red; cursor: pointer;"
+            >Log Out</button>
+        </li>
+        </ul>
+    </div>
+    </div>
+
+
+    <!-- auth controls -->
+    <div class="auth-controls">
+        <span id="welcome"></span>
+        <a href="./signin.html" id="loginLink">Log In</a>
+        <a href="./signup.html" id="signupLink">Sign Up</a>
+        <button id="logoutBtn" style="display:none">Log Out</button>
+    </div>
+    </nav>
+
+    
+            <div class="title">
+                <h1>Cholo Ghuri!</h1>
+                <p>Plan your trip with us and travel around Bangladesh with the most affordable packages!</p>
+                <a href="./hotels.html" class="button">Check our Hotels!</a>
+            </div>
+            </div>
+        </div>
+
+    <!-- Services -->
+
+    <section class="container">
+        <div class="text">
+            <h2>We have the best services available for you!</h2>
+        </div>
+        <div class="rowitems">
+            <div class="container-box">
+            <div class="container-image">
+            <img src="./files/1a.jpg" alt="Flight Services">
+            </div>
+                <h4>Flight Services</h4>
+                <p>Arrival and Departure</p>
+            </div>
+        
+            <div class="container-box">
+            <div class="container-image">
+            <img src="./files/2a.jpg" alt="Food Services">
+            </div>
+                <h4>Food Services</h4>
+                <p>Catering</p>
+            </div>
+
+            <div class="container-box">
+            <div class="container-image">
+                <img src="./files/3a.jpg" alt="Travel Services">
+            </div>
+                <h4>Travel Services</h4>
+                <p>Pick-up/drop</p>
+            </div>
+
+            <div class="container-box">
+            <div class="container-image">
+                <img src="./files/4a.jpg" alt="Hotel Services">
+            </div>
+                <h4>Hotel Services</h4>
+                <p>Check-in/out</p>
+            </div>
+
+            
+<div class="container-box">
+    <div class="container-image">
+        <img src="./files/car.jpg" alt="Transportation Services">
+    </div>
+    <h4>Transport Services</h4>
+    <p>Rental car, shuttle</p>
+</div>
+
+
+<div class="container-box">
+    <div class="container-image">
+        <img src="./files/media.jpg" alt="Entertainment Services">
+    </div>
+    <h4>Media</h4> <h4>Services</h4>
+    <p>Guided Tours, Movie Nights</p>
+</div>
+
+
+<div class="container-box">
+    <div class="container-image">
+        <img src="./files/wellness.png" alt="Wellness Services">
+    </div>
+    <h4>Wellness Services</h4>
+    <p>Spa, Yoga, Fitness Center</p>
+</div>
+
+<div class="container-box">
+    <div class="container-image">
+        <img src="./files/shopping.jpg" alt="Shopping Services">
+    </div>
+    <h4>Shopping Services</h4>
+    <p>On-site Shopping, Delivery</p>
+</div>
+
+<div class="container-box">
+    <div class="container-image">
+        <img src="./files/laundry.jpg" alt="Laundry Services">
+    </div>
+    <h4>Laundry Services</h4>
+    <p>Dry Cleaning, Laundry</p>
+</div>
+
+
+
+        </div>
+
+        </div>
+
+    </section>
+
+    <!-- Locations -->
+
+    <section class="locations" id="locations">
+        <div class="package-title">
+            <h2>Locations</h2>
+        </div>
+
+        <div class="location-content">
+            
+            <a href="/Locations/Cox's Bazar/Cox's_Bazar.html" target="_blank"><div class="col-content">
+                <img src="./files/t7.jpg" alt="">
+                <h5>Cox's Bazar</h5>
+                <br>
+                <p>Sea Beach, Mountains etc</p>
+            </div></a>
+
+        
+
+            <a href="Locations/Bandarban/bandarban.html" target="_blank"><div class="col-content">
+                <img src="./files/bandarban.jpg" alt="">
+                <h5>Bandarban</h5>
+                <p>Nilachol</p>
+            </div></a>
+
+            <a href="Locations/Saint Martin/saintm.html" target="_blank"><div class="col-content">
+                <img src="./files/sajek.jpg" alt="">
+                <h5>Sajek</h5>
+                <p>Valley</p>
+            </div></a>
+
+            <a href="Locations/Sylhet/sylhet.html" target="_blank"><div class="col-content">
+                <img src="./files/l4.jpg" alt="">
+                <h5>Sylhet</h5>
+                <p>Waterfalls, Greenery etc</p>
+            </div></a>
+
+            <a href="Locations/Sajek/sajek.html" target="_blank"><div class="col-content">
+                <img src="./files/sundarban.jpg" alt="">
+                <h5>The Sundarbans</h5>
+                <p>Mangrove Forest</p>
+            </div></a>
+
+            <a href="Locations/Sundarbans/sundarban.html" target="_blank"><div class="col-content">
+                <img src="./files/tanguar.jpg" alt="">
+                <h5>Tanguar Haor</h5>
+                <p>Sunamganj</p>
+            </div></a>
+
+            <a href="Locations/Tanguar Haor/tanguar.html" target="_blank"><div class="col-content">
+                <img src="./files/saint.jpg" alt="">
+                <h5>Saint Martins Island</h5>
+                <p>Coral Island</p>
+            </div></a>
+
+            
+
+        </div>
+    </section>
+
+    <!-- Packages -->
+
+    <section class="package" id="package">
+        <div class="package-title">
+            <h2>Packages</h2>
+        </div>
+
+        <div class="package-content">
+            
+            <div class="box">
+                <div class="image">
+                    <img src="./files/p1.jpg" alt="">
+                    <h3>৳.9,999/-</h3>
+                </div>
+            
+            <div class="dest-content">
+                <div class="location">
+                    <h4>Bronze</h4>
+                    <ul class="pac-details">
+                        <li>2 Star Hotel</li>
+                        <li>5 Nights Stay</li>
+                        <li>Free photo Session</li>
+                        <li>Friendly Tour Guide</li>
+                        <li>24/7 Customer Help Center</li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+            
+            <div class="box">
+                <div class="image">
+                    <img src="./files/p2.jpg" alt="">
+                    <h3>৳.19,999/-</h3>
+                </div>
+            
+            <div class="dest-content">
+                <div class="location">
+                    <h4>Silver</h4>
+                    <ul class="pac-details">
+                        <li>3 Star Hotel</li>
+                        <li>7 Nights Stay</li>
+                        <li>Free photo Session</li>
+                        <li>Friendly Tour Guide</li>
+                        <li>24/7 Customer Help Center</li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="./files/p3.jpg" alt="">
+                    <h3>৳.29,999/-</h3>
+                </div>
+            
+            <div class="dest-content">
+                <div class="location">
+                    <h4>Gold</h4>
+                    <ul class="pac-details">
+                        <li>4 Star Hotel</li>
+                        <li>10 Nights Stay</li>
+                        <li>Breakfast and Dinner</li>
+                        <li>Free photo Session</li>
+                        <li>Friendly Tour Guide</li>
+                        <li>24/7 Customer Help Center</li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="./files/p4.jpg" alt="">
+                    <h3>৳.39,999/-</h3>
+                </div>
+            
+            <div class="dest-content">
+                <div class="location">
+                    <h4>Platinum</h4>
+                    <ul class="pac-details">
+                        <li>5 Star Hotel</li>
+                        <li>14 Nights Stay</li>
+                        <li>Breakfast, Lunch and Dinner</li>
+                        <li>Bornfire</li>
+                        <li>Free photo Session</li>
+                        <li>Friendly Tour Guide</li>
+                        <li>24/7 Customer Help Center</li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Newsletter -->
+
+    <section class="newsletter">
+        <div class="newstext">
+            <h2>Newsletter</h2>
+            <p>Subscribe to get offers and latest<br>updates every week!</p>
+        </div>
+
+        <div class="send">
+            <form action="">
+                <input type="email" name="emailid" placeholder="E-mail" required>
+                <input type="submit" value="Subscribe">
+            </form>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+
+    <section class="footer">
+        <div class="foot">
+            <div class="footer-content">
+                
+                <div class="footlinks">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="./stats.html">See Stats</a></li>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footlinks">
+                    <h4>Connect</h4>
+                    <div class="social">
+                        <a href="https://www.facebook.com" target="_blank"><i class='bx bxl-facebook'></i></a>
+                        <a href="https://www.instagram.com" target="_blank"><i class='bx bxl-instagram' ></i></a>
+                        <a href="https://www.twitter.com" target="_blank"><i class='bx bxl-twitter' ></i></a>
+                        <a href="https://www.linkedin.com" target="_blank"><i class='bx bxl-linkedin' ></i></a>
+                        <a href="https://www.youtube.com" target="_blank"><i class='bx bxl-youtube' ></i></a>
+                        <a href="https://www.github.com" target="_blank"><i class='bx bxl-github'></i></a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="end">
+            <p>Copyright © 2025 Cholo Ghuri! All Rights Reserved.<br>Website developed by: Prithvi and Zawad</p>
+        </div>
+    </section>
+
+    <script>
+    const loginLink    = document.getElementById('loginLink');
+    const signupLink   = document.getElementById('signupLink');
+    const logoutBtn    = document.getElementById('logoutBtn');
+    const welcomeEl    = document.getElementById('welcome');
+    const profilePic   = document.getElementById('profilePic');
+    const userDropdown = document.getElementById('userDropdown');
+
+    // Fetch current user info
+    fetch('/api/users/me')
+        .then(r => {
+        if (!r.ok) throw new Error('not logged in');
+        return r.json();
+        })
+        .then(user => {
+        loginLink.style.display    = 'none';
+        signupLink.style.display   = 'none';
+        welcomeEl.textContent      = `Welcome, ${user.first_name}`;
+        if (user.profile_picture) {
+            profilePic.src = user.profile_picture;
+        }
+        })
+        .catch(() => {
+        document.querySelector('.auth-controls').style.display = 'none';
+        });
+
+    // Toggle dropdown on profile pic click
+    profilePic?.addEventListener('click', () => {
+        userDropdown.style.display = userDropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Close dropdown if clicked outside
+    document.addEventListener('click', e => {
+        if (!document.querySelector('.auth-controls').contains(e.target)) {
+        userDropdown.style.display = 'none';
+        }
+    });
+
+    // Logout handler
+    logoutBtn?.addEventListener('click', () => {
+        fetch('/api/logout', { method: 'POST' }).then(() => location.reload());
+    });
+    </script>
+
+
+    
+    </body>
+    </html>
