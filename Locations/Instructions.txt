@@ -1,0 +1,1 @@
+Unzip the location file. Inside it you will find some of the locations I covered for this project. I removed the bg videos for each location due to size limitations
